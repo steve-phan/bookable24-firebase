@@ -1,0 +1,93 @@
+{
+  "Home": "Trang  chủ",
+  "Hi people": "Chào  mọi  người",
+  "Welcome to your new Gatsby site.": "Chào mừng mọi người đến với Gatsby",
+  "Now go build something great.": "Xây dựng nàoo.",
+  "Go to page 2": "Đến  page  2",
+  "xxx": "XXX VN",
+  "notfound": "Không tìm thấy",
+  "menu": {
+    "Home": "Trang chủ",
+    "Services": "Dịch vụ",
+    "Contact": "Liên hệ",
+    "Blog": "Blog",
+    "About": "Về chúng tôi",
+    "DashBoard": "DashBoard",
+    "TodayBooking": "Lịch hẹn hôm nay",
+    "TomorrowBooking": "Lịch hẹn ngày mai",
+    "AllBooking": "Tất cả lich hẹn",
+    "Settings": "Cài đặt"
+  },
+  "account": {
+    "login": "Đăng nhập",
+    "logout": "Đăng xuất",
+    "registration": "Đăng ký",
+    "forgot": "Quên tài khoản"
+  },
+  "hero": {
+    "item1": {
+      "name": "Đặt hẹn miễn phí",
+      "description": "Bạn muốn thử đặt lịch hẹn trực tuyến của BookAble24 trong một khoảng thời gian dài hơn vì bạn muốn tự mình kiểm tra xem việc sử dụng BookAble24 mang lại hiệu quả như thế nào cho công việc của bạn - và lý tưởng là miễn phí. Sau đó, hãy bắt đầu với BookAble24 Miễn phí. BookAble24 Free là giải pháp đặt lịch hẹn miễn phí, dễ sử dụng của chúng tôi với bố cục BookAble24.",
+      "button": "Test Demo"
+    },
+    "item2": {
+      "name": "Đặt hẹn chuyên nghiệp",
+      "description": "Nếu bạn có nhiều yêu cầu hơn về chức năng đặt lịch hẹn trực tuyến, Bookable24 Profi là sản phẩm phù hợp với bạn. Để bắt đầu dễ dàng, hãy bắt đầu với một hệ thống được cấu hình sẵn cho lĩnh vực ứng dụng của bạn. Sau đó, bạn có thể điều chỉnh điều này theo yêu cầu của mình và định cấu hình nó theo mong muốn của bạn. Điều này cung cấp cho bạn một hệ thống đặt lịch hẹn trực tuyến cực kỳ hiệu quả.",
+      "button": "Test Demo"
+    }
+  },
+  "whyus": {
+    "item1": "Luôn có sẵn Tăng doanh số bán hàng của bạn với hệ thống đặt lịch hẹn trực tuyến luôn sẵn sàng",
+    "item2": "Giảm tình trạng vắng mặt Giảm các cuộc hẹn bị lỡ của bạn với lời nhắc cuộc hẹn qua e-mail hoặc SMS tự động",
+    "item3": "Tạo sự tự do, tiết kiệm thời gian khi đặt lịch hẹn và có được sự tự do mới cho công việc của bạn",
+    "item4": "Kinh nghiệm sử dụng Hưởng lợi từ hơn 10 năm kinh nghiệm đặt lịch hẹn trực tuyến của chúng tôi",
+    "item5": "Điều chỉnh bố cục Điều chỉnh bố cục đặt lịch hẹn trực tuyến phù hợp với thiết kế của công ty bạn.",
+    "item6": "Bắt đầu miễn phí Bắt đầu ngay bây giờ không rủi ro với Bookable24 Miễn phí, Bookable24 Dễ dàng hoặc Bookable24 Profi"
+  },
+  "booking": {
+    "slot": {
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "warning": "Các vị trí này có thể bị trì hoãn trong một thời gian ngắn."
+    }
+  },
+  "thankyou": {
+    "thank": "Cảm ơn, ",
+    "text": "Chúng tôi đã gửi một Confirm-EMail đến: "
+  },
+  "dashboard": {
+    "dashboard": {
+      "bookings": "Đặt chỗ",
+      "totalbookings": "Tổng số đặt trước",
+      "totalcustomers": "Tổng số khách hàng",
+      "hasbooked": "đã đặt chỗ, vui lòng kiểm tra cụ thể",
+      "details": {
+        "title": "Thông tin khách hàng",
+        "name": "Khách hàng",
+        "phone": "Điện thoại",
+        "time": "Thời gian",
+        "number": "Số lượng",
+        "require": "Yêu cầu thêm"
+      },
+      "timeago": {
+        "second": "giây trước",
+        "minute": "khoảng một phút trước",
+        "halfhour": "khoảng nửa tiếng trước",
+        "hour": "khoảng một tiếng trước",
+        "hours": "tiếng trước",
+        "day": "ngày trước",
+        "week": "tuần trước",
+        "month": "Một tháng trước"
+      }
+    },
+    "allbookings": "",
+    "todaybookings": "",
+    "tomorrowbookings": "",
+    "helper": {
+      "time": "Thời gian",
+      "guest": "Số lượng",
+      "name": "Khách hàng",
+      "pickdate": "Chọn ngày tháng"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "pretty": true,
+    "baseUrl": ".",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowJs": true,
+    "noEmit": true,
+    "strict": true,
+    "alwaysStrict": true,
+    // "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react",
+    "lib": ["esnext", "dom"],
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "paths": {
+      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
+    }
+  },
+  "include": ["src", "themes.d.ts", "custom.d.ts"],
+  "exclude": ["node_modules"]
+}

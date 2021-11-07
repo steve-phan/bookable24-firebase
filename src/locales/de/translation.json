@@ -1,0 +1,93 @@
+{
+  "Home": "StartSite",
+  "Hi people": "Hallo Leute",
+  "Welcome to your new Gatsby site.": "Wilkomment zu unser website",
+  "Now go build something great.": "Kann wir bauen zusammen.",
+  "Go to page 2": "Geh zu seite 2",
+  "xxx": "XXX DE",
+  "notfound": "Nicht gefunden",
+  "menu": {
+    "Home": "StartSeite",
+    "Services": "Services",
+    "Contact": "Kontakt",
+    "Blog": "Blog",
+    "About": "Über uns",
+    "DashBoard": "DashBoard",
+    "TodayBooking": "HeuteReservieren",
+    "TomorrowBooking": "MorgenReservieren",
+    "AllBooking": "AlleReservieren",
+    "Settings": "Einstellungen"
+  },
+  "account": {
+    "login": "Anmelden",
+    "logout": "Ausloggen",
+    "registration": "Registrieren",
+    "forgot": "Passwort vergessen"
+  },
+  "hero": {
+    "item1": {
+      "name": "Frei Termin",
+      "description": "Sie möchten gerne die Online-Termin­buchung von BookAble24 über einen längeren Zeit­raum aus­pro­bieren, weil Sie selbst testen möchten, wie sich der Einsatz von BookAble24 für Ihre Tätig­keit rechnet - und das idealer­weise ohne Kosten. Dann starten Sie mit BookAble24 Free. BookAble24 Free ist unsere einfach zu bedienende kostenlose Termin­buchungs­lösung mit BookAble24-Layout.",
+      "button": "Versuchen Sie zu buchen"
+    },
+    "item2": {
+      "name": "Profi Termin",
+      "description": "Haben Sie umfang­reichere An­forderungen an die Funktionalität der Online-Termin­buchung, so ist Bookable24 Profi für Sie das passende Produkt. Für einen einfachen Einstieg, starten Sie mit einem für Ihr Einsatz­gebiet vor­konfigurierten System. Dieses können Sie anschließend an Ihre An­forderungen anpassen und nach Ihren Wünschen konfigurieren. So erhalten Sie ein Online-Termin­buchungs­system mit höchster Effizienz.",
+      "button": "Versuchen Sie zu buchen"
+    }
+  },
+  "whyus": {
+    "item1": "Immer ereichbar Erhöhen Sie Ihre Umsätze durch ein immer verfügbares Online-Termin­buchungs­system,",
+    "item2": "Ausfälle reduzieren Reduzieren Sie Ihre Termin­ausfälle durch automatische E-Mail- oder SMS-Termin­erinnerung",
+    "item3": "Freiräume schaffen Sparen Sie Zeit bei der Termin­vergabe und gewinnen Sie neue Frei­räume für Ihre Arbeit",
+    "item4": "Erfahrung nutzen Profitieren Sie von unserer mehr als 10-jährigen Erfahrung in der Online-Terminbuchung",
+    "item5": "Layout anpassen Passen Sie das Layout Ihre Online-Terminbuchung an Ihr Corporate Design an.",
+    "item6": "Kostenlos starten Starten Sie jetzt risikolos mit BookAble24 Free, BookAble24 Easy oder BookAble24 Profi"
+  },
+  "booking": {
+    "slot": {
+      "lunch": "Mittagessen",
+      "dinner": "Abendessen",
+      "warning": "Diese Slots können sich in kurzer Zeit verzögern."
+    }
+  },
+  "thankyou": {
+    "thank": "Vielen Dank, ",
+    "text": "Wir haben eine Confirm-EMail gesendet an: "
+  },
+  "dashboard": {
+    "dashboard": {
+      "bookings": "Buchungen",
+      "totalbookings": "Gesamtbuchungen",
+      "totalcustomers": "Gesamtkunden",
+      "hasbooked": "hat eine Reservierung, bitte überprüfen Sie die Details",
+      "details": {
+        "title": "Kundeninformation",
+        "name": "Name",
+        "phone": "Phone",
+        "time": "Zeit",
+        "number": "Nummer",
+        "require": "Benötigen"
+      },
+      "timeago": {
+        "second": "Sekunden vorher",
+        "minute": "Minute vorher",
+        "halfhour": "halbe Stunde vorher",
+        "hour": "eine Stunde vorher",
+        "hours": "Stunden vorher",
+        "day": "Tag vorher",
+        "week": "Woche vorher",
+        "month": "Monat vorher"
+      }
+    },
+    "allbookings": "",
+    "todaybookings": "",
+    "tomorrowbookings": "",
+    "helper": {
+      "time": "Zeit",
+      "guest": "Gäste",
+      "name": "Name",
+      "pickdate": "Wählen sie ein Datum"
+    }
+  }
+}

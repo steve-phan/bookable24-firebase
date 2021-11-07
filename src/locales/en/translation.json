@@ -1,0 +1,94 @@
+{
+  "Home": "Home",
+  "Hi people": "Hi people",
+  "Welcome to your new Gatsby site.": "Welcome to your new Gatsby site.",
+  "Now go build something great.": "Now go build something great.",
+  "Go to page 2": "Go to page 2",
+  "xxx": "XXX EN",
+  "default": "This is a Default Text",
+  "notfound": "Not found",
+  "menu": {
+    "Home": "Home",
+    "Services": "Services",
+    "Contact": "Contact",
+    "Blog": "Blog",
+    "About": "About us",
+    "DashBoard": "DashBoard",
+    "TodayBooking": "TodayBooking",
+    "TomorrowBooking": "TomorrowBooking",
+    "AllBooking": "AllBooking",
+    "Settings": "Settings"
+  },
+  "account": {
+    "login": "Login",
+    "logout": "Logout",
+    "registration": "Registration",
+    "forgot": "Forgot password"
+  },
+  "hero": {
+    "item1": {
+      "name": "Free Booking",
+      "description": "You would like to try out BookAble24's online appointment booking for a longer period of time because you want to test for yourself how the use of BookAble24 pays off for your work - and ideally at no cost. Then start with BookAble24 Free. BookAble24 Free is our easy-to-use free appointment booking solution with BookAble24 layout.",
+      "button": "Try Booking"
+    },
+    "item2": {
+      "name": "Professional Booking",
+      "description": "If you have more extensive requirements for the functionality of online appointment booking, Bookable24 Profi is the right product for you. To get started easily, start with a system that is preconfigured for your area of application. You can then adapt this to your requirements and configure it according to your wishes. This gives you an online appointment booking system that is extremely efficient.",
+      "button": "Try Booking"
+    }
+  },
+  "whyus": {
+    "item1": "Always available Increase your sales with an online appointment booking system that is always available",
+    "item2": "Reduce absenteeism Reduce your missed appointments with automatic e-mail or SMS appointment reminders",
+    "item3": "Create freedom, save time when making appointments and gain new freedom for your work",
+    "item4": "Use experience Benefit from our more than 10 years of experience in online appointment booking",
+    "item5": "Adapt layout Adapt the layout of your online appointment booking to your corporate design.",
+    "item6": "Start for free Start now risk-free with Bookable24 Free, Bookable24 Easy or Bookable24 Profi"
+  },
+  "booking": {
+    "slot": {
+      "lunch": "Lunch",
+      "dinner": "Dinner",
+      "warning": "These slots might be delayed in a short time."
+    }
+  },
+  "thankyou": {
+    "thank": "Thanks, ",
+    "text": "We sent an Confirm-EMail to: "
+  },
+  "dashboard": {
+    "dashboard": {
+      "bookings": "Bookings",
+      "totalbookings": "Total Bookings",
+      "totalcustomers": "Total Customers",
+      "hasbooked": "has a reservation, please check the details",
+      "details": {
+        "title": "Customer Infomation",
+        "name": "Name",
+        "phone": "Phone",
+        "time": "Time",
+        "number": "Number",
+        "require": "Require"
+      },
+      "timeago": {
+        "second": "seconds before",
+        "minute": "about 1 minute before",
+        "halfhour": "about half hour before",
+        "hour": "about 1 hour before",
+        "hours": "hours before",
+        "day": "days before",
+        "week": "weeks before",
+        "month": "month before"
+      }
+    },
+    "allbookings": "",
+    "todaybookings": "",
+    "tomorrowbookings": "",
+    "helper": {
+      "time": "Time",
+      "guest": "Guest",
+      "name": "Name",
+      "pickdate": "Pick a date"
+    }
+  }
+}
