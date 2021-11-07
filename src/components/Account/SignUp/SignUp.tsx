@@ -110,41 +110,36 @@ const SignIn = () => {
         firstName,
         lastName,
       } = values
-      const response = await axios.post(
-        "/.netlify/functions/registration-shop",
-        {
-          userinfo: {
-            company,
-            email,
-            phoneNumber,
-            city,
-            cityCode,
-            street,
-            firstName,
-            lastName,
-            uid: userRef.user.uid,
-          },
-        }
-      )
+      const response = await axios.post("/signup", {
+        company,
+        email,
+        phoneNumber,
+        city,
+        cityCode,
+        street,
+        firstName,
+        lastName,
+        uid: userRef.user.uid,
+      })
 
-      if (response.data === "EMAIL_SENT") {
-        setValues({
-          ...values,
-          loading: false,
-          open: true,
-          modalText: ` Wir haben eine E-Mail an ${values.email} gesendet. Bitte kontaktieren Sie uns, um Ihr Konto zu aktivieren  `,
-        })
-      } else {
-        setValues({
-          ...values,
-          loading: false,
-          open: true,
-          modalText: `Mit dieser E-Mail ${values.email} stimmt etwas nicht, bitte versuche es später noch einmal`,
-        })
-      }
-      setTimeout(() => {
-        navigate("/")
-      }, 5000)
+      // if (response.data === "EMAIL_SENT") {
+      //   setValues({
+      //     ...values,
+      //     loading: false,
+      //     open: true,
+      //     modalText: ` Wir haben eine E-Mail an ${values.email} gesendet. Bitte kontaktieren Sie uns, um Ihr Konto zu aktivieren  `,
+      //   })
+      // } else {
+      //   setValues({
+      //     ...values,
+      //     loading: false,
+      //     open: true,
+      //     modalText: `Mit dieser E-Mail ${values.email} stimmt etwas nicht, bitte versuche es später noch einmal`,
+      //   })
+      // }
+      // setTimeout(() => {
+      //   navigate("/")
+      // }, 5000)
     } catch (error) {
       setValues({
         ...values,

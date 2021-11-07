@@ -6,9 +6,9 @@ import { checkUserAuth } from "./src/store/shop/shopSlice"
 const CheckAuth = () => {
   const dispatch = useAppDispatch()
   const shopList = useShopname()
-  React.useEffect(() => {
-    dispatch(checkUserAuth(shopList))
-  }, [])
+  // React.useEffect(() => {
+  //   dispatch(checkUserAuth(shopList))
+  // }, [])
   return <> </>
 }
 export default CheckAuth

@@ -47,7 +47,7 @@ const ShopPage: React.FC<IShopPageProps> = ({
   location,
 }) => {
   const [isLoading, setIsLoading] = useState<boolean>(true)
-  const [showCancelBooking, setShowCancelBooking] = useState<boolean>(true)
+  const [showCancelBooking, setShowCancelBooking] = useState<boolean>(false)
   const [booking, setBooking] = useState<any>()
 
   const [activeStep, setActiveStep] = useState(0)
@@ -66,11 +66,11 @@ const ShopPage: React.FC<IShopPageProps> = ({
 
   const steps = getSteps()
 
-  useEffect(() => {
-    if (status !== "loading" && !showCancelBooking) {
-      setIsLoading(false)
-    }
-  }, [status])
+  // useEffect(() => {
+  //   if (status !== "loading" && !showCancelBooking) {
+  //     setIsLoading(false)
+  //   }
+  // }, [status])
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1)
@@ -80,32 +80,32 @@ const ShopPage: React.FC<IShopPageProps> = ({
     setActiveStep(prevActiveStep => prevActiveStep - 1)
   }
 
-  useEffect(() => {
-    if (location.search.includes("?bookingId=")) {
-      const bookingId = location.search.replace("?", "").split("=")[1]
-      setShowCancelBooking(true)
-      axios
-        .post(
-          "/.netlify/functions/cancel-termin",
-          JSON.stringify({ bookingId, shopName, shopInfo })
-        )
-        .then(res => {
-          setIsLoading(false)
-          setBooking(res.data)
-        })
-        .catch(err => console.log("err", err))
-    } else {
-      dispatch(
-        getShopinfo({
-          shopname: shopName,
-          shopemail: shopEmail,
-          isShopLogin: false,
-        })
-      )
-      setIsLoading(false)
-      setShowCancelBooking(false)
-    }
-  }, [])
+  // useEffect(() => {
+  //   if (location.search.includes("?bookingId=")) {
+  //     const bookingId = location.search.replace("?", "").split("=")[1]
+  //     setShowCancelBooking(true)
+  //     axios
+  //       .post(
+  //         "/.netlify/functions/cancel-termin",
+  //         JSON.stringify({ bookingId, shopName, shopInfo })
+  //       )
+  //       .then(res => {
+  //         setIsLoading(false)
+  //         setBooking(res.data)
+  //       })
+  //       .catch(err => console.log("err", err))
+  //   } else {
+  //     dispatch(
+  //       getShopinfo({
+  //         shopname: shopName,
+  //         shopemail: shopEmail,
+  //         isShopLogin: false,
+  //       })
+  //     )
+  //     setIsLoading(false)
+  //     setShowCancelBooking(false)
+  //   }
+  // }, [])
 
   // const testTime = dayjs("Dec 31").diff()
   // const testTime1 = dayjs().diff("Nov 1 2021")
@@ -122,14 +122,11 @@ const ShopPage: React.FC<IShopPageProps> = ({
       require: guestInfo.require,
       shopInfo,
     }
-    setIsLoading(true)
+    // setIsLoading(true)
     axios
-      .post("/.netlify/functions/confirm-termin", JSON.stringify(dataBooking))
+      .post("/reservation", dataBooking)
       .then(res => {
-        if (res.data === "EMAIL_SENT") {
-          setIsLoading(false)
-          handleNext()
-        }
+        console.log(res.data)
       })
       .catch(err => {
         setIsLoading(false)
@@ -151,7 +148,7 @@ const ShopPage: React.FC<IShopPageProps> = ({
       <WrapTerminSt>
         <ShopLogo shopinfo={data.contentfulShopInfo} />
         <WrapTerminContentSt>
-          {isLoading && <Loading />}
+          {/* {isLoading && <Loading />} */}
           {showCancelBooking ? (
             booking?.email && (
               <CancelBooking
