@@ -102,8 +102,8 @@ const ShopPage: React.FC<IShopPageProps> = ({
           isShopLogin: false,
         })
       )
-      setIsLoading(false)
-      setShowCancelBooking(false)
+      // setIsLoading(false)
+      // setShowCancelBooking(false)
     }
   }, [])
 

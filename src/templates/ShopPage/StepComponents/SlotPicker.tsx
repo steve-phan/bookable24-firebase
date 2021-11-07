@@ -46,9 +46,9 @@ const SlotPicker = () => {
   const { selectedSlot = getDefaultSlot(), selectedDate } = useAppSelector(
     state => state.booking
   )
-  const { shopInfo, allTermins } = useAppSelector(state => state.shop)
+  const { shopInfo, allCommingTermins } = useAppSelector(state => state.shop)
 
-  const pickedDayTermins = getDateBookings(allTermins, selectedDate)
+  const pickedDayTermins = getDateBookings(allCommingTermins, selectedDate)
 
   // console.log(reduceTermins(pickedDayTermins))
 

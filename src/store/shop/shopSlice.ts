@@ -1,4 +1,5 @@
 import { async } from "@firebase/util"
+import { Email } from "@mui/icons-material"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 // import {} from "firebase"
@@ -15,6 +16,7 @@ export const checkUserAuth =
     if (typeof window !== "undefined") {
       const user = auth.currentUser
       if (user?.email) {
+        console.log("email", user?.email)
         const shopName = getShopName(user.email, shopList)
         dispatch(
           getShopinfo({
@@ -50,6 +52,7 @@ const intinitialShopState: IshopState = {
   isShopLogin: false,
   status: "loading",
   allTermins: [],
+  allCommingTermins: [],
   settings: {
     time: "12:30",
     weekdays: [],
@@ -72,15 +75,19 @@ const intinitialShopState: IshopState = {
 export const getShopinfo = createAsyncThunk(
   "shop/getShopInfo",
   async ({ shopEmail, shopName, isShopLogin }: IshopQuery) => {
+    console.log("getShopInfo", "trigger")
     const response: any = await axios.get("/shopinfo", {
       headers: {
         shopEmail,
         shopName,
       },
     })
-    const { allTermins, shopInfo }: { allTermins: any[]; shopInfo: IshopInfo } =
-      response.data
-    return { allTermins, shopInfo, isShopLogin }
+
+    const {
+      bookings,
+      shopinfo: shopInfo,
+    }: { bookings: any[]; shopinfo: IshopInfo } = response.data
+    return { bookings, shopInfo, isShopLogin }
   }
 )
 
@@ -129,14 +136,14 @@ export const shopSlice = createSlice({
         } = action.payload.shopInfo
         const { time, weekdays } = settings || {}
         const newarr = [
-          ...action.payload.allTermins.filter(termin => !termin.status),
+          ...action.payload.bookings.filter(termin => !termin.status),
         ]
         const isShopLogin = action.payload.isShopLogin ? true : false
         const status = action.payload.isShopLogin ? "login" : "logout"
 
         return {
           ...state,
-          allTermins: [...newarr],
+          allCommingTermins: [...newarr],
           isShopLogin,
           status,
           shopInfo: {

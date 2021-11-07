@@ -2,10 +2,10 @@ import admin from "firebase-admin"
 
 import * as serviceAccountKey from "./key.json"
 
-admin.initializeApp({
+const app = admin.initializeApp({
   credential: admin.credential.cert(serviceAccountKey as admin.ServiceAccount),
 })
 
-const db = admin.firestore()
+const db = admin.firestore(app)
 
-export { admin, db }
+export { db, admin }

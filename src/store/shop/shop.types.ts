@@ -20,6 +20,7 @@ export interface IshopState {
   status: "login" | "loading" | "logout"
   isShopLogin: boolean
   allTermins: any[]
+  allCommingTermins: any[]
   settings: {
     time: string
     weekdays: number[]
