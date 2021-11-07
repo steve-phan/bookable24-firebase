@@ -27,8 +27,8 @@ export interface IshopState {
 }
 
 export interface IshopQuery {
-  shopemail: string
-  shopname: string
+  shopEmail: string
+  shopName: string
   isShopLogin: boolean
 }
 

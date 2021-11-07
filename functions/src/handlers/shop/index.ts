@@ -36,9 +36,23 @@ export const shopSignUp = (req: Request, res: Response) => {
       createAt: dayjs().format("MMM DD YYYY"),
     })
     .then(data => {
-      res.status(200).json({ message: "success" })
+      res.status(200).json({ type: "success" })
     })
-    .catch(() => {
-      res.status(403).json({ message: "fail" })
+    .catch(err => {
+      res.status(403).json({ message: err, type: "faild" })
     })
+}
+
+export const getShopInfo = async (req: Request, res: Response) => {
+  console.log(req.headers)
+
+  const { shopemail: shopEmail, shopname: shopName } = req.headers
+
+  try {
+    const shopInfo = await db.doc(`shoplist/${shopName}`).get()
+  } catch (error) {}
+
+  db.collection(shopName as string).get
+
+  res.status(200).json({ messsage: "test" })
 }

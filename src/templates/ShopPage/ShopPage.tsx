@@ -80,32 +80,32 @@ const ShopPage: React.FC<IShopPageProps> = ({
     setActiveStep(prevActiveStep => prevActiveStep - 1)
   }
 
-  // useEffect(() => {
-  //   if (location.search.includes("?bookingId=")) {
-  //     const bookingId = location.search.replace("?", "").split("=")[1]
-  //     setShowCancelBooking(true)
-  //     axios
-  //       .post(
-  //         "/.netlify/functions/cancel-termin",
-  //         JSON.stringify({ bookingId, shopName, shopInfo })
-  //       )
-  //       .then(res => {
-  //         setIsLoading(false)
-  //         setBooking(res.data)
-  //       })
-  //       .catch(err => console.log("err", err))
-  //   } else {
-  //     dispatch(
-  //       getShopinfo({
-  //         shopname: shopName,
-  //         shopemail: shopEmail,
-  //         isShopLogin: false,
-  //       })
-  //     )
-  //     setIsLoading(false)
-  //     setShowCancelBooking(false)
-  //   }
-  // }, [])
+  useEffect(() => {
+    if (location.search.includes("?bookingId=")) {
+      const bookingId = location.search.replace("?", "").split("=")[1]
+      setShowCancelBooking(true)
+      axios
+        .post(
+          "/.netlify/functions/cancel-termin",
+          JSON.stringify({ bookingId, shopName, shopInfo })
+        )
+        .then(res => {
+          setIsLoading(false)
+          setBooking(res.data)
+        })
+        .catch(err => console.log("err", err))
+    } else {
+      dispatch(
+        getShopinfo({
+          shopName,
+          shopEmail,
+          isShopLogin: false,
+        })
+      )
+      setIsLoading(false)
+      setShowCancelBooking(false)
+    }
+  }, [])
 
   // const testTime = dayjs("Dec 31").diff()
   // const testTime1 = dayjs().diff("Nov 1 2021")

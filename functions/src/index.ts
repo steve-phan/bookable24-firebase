@@ -3,12 +3,13 @@ import express, { Express } from "express"
 import cors from "cors"
 
 import { confirmReservation } from "./handlers/booking"
-import { shopSignUp } from "./handlers/shop"
+import { shopSignUp, getShopInfo } from "./handlers/shop"
 
 const app: Express = express()
 
 app.use(cors({ origin: true }))
 
+app.get("/shopinfo", getShopInfo)
 app.post("/reservation", confirmReservation)
 app.post("/signup", shopSignUp)
 

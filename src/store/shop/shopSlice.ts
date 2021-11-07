@@ -1,3 +1,4 @@
+import { async } from "@firebase/util"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 // import {} from "firebase"
@@ -14,11 +15,11 @@ export const checkUserAuth =
     if (typeof window !== "undefined") {
       const user = auth.currentUser
       if (user?.email) {
-        const shopname = getShopName(user.email, shopList)
+        const shopName = getShopName(user.email, shopList)
         dispatch(
           getShopinfo({
-            shopemail: user?.email || "",
-            shopname,
+            shopEmail: user?.email || "",
+            shopName,
             isShopLogin: true,
           })
         )
@@ -70,16 +71,13 @@ const intinitialShopState: IshopState = {
 
 export const getShopinfo = createAsyncThunk(
   "shop/getShopInfo",
-  async ({ shopemail, shopname, isShopLogin }: IshopQuery) => {
-    const response: any = await axios.get(
-      "/.netlify/functions/get-shop-termins",
-      {
-        headers: {
-          shopemail,
-          shopname,
-        },
-      }
-    )
+  async ({ shopEmail, shopName, isShopLogin }: IshopQuery) => {
+    const response: any = await axios.get("/shopinfo", {
+      headers: {
+        shopEmail,
+        shopName,
+      },
+    })
     const { allTermins, shopInfo }: { allTermins: any[]; shopInfo: IshopInfo } =
       response.data
     return { allTermins, shopInfo, isShopLogin }

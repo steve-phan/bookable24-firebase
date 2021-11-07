@@ -89,10 +89,10 @@ const SignIn = () => {
     }
   }, [isShopLogin])
   const handleShopLogin = async () => {
-    setValues({
-      ...values,
-      loading: true,
-    })
+    // setValues({
+    //   ...values,
+    //   loading: true,
+    // })
     try {
       const userRef = await createUserWithEmailAndPassword(
         auth,

@@ -1,8 +1,9 @@
 export const firebaseConfig = {
-  apiKey: 'AIzaSyDPO-RJNdksu8Y3-b24HEWeLOQ1d0fugwM',
-  authDomain: 'booking-3a839.firebaseapp.com',
-  projectId: 'booking-3a839',
-  storageBucket: 'booking-3a839.appspot.com',
-  messagingSenderId: '1030323918201',
-  appId: '1:1030323918201:web:0041edcf830f215f574ba8',
-};
+  apiKey: "AIzaSyB3ycs7ejcmtHonG_NdzEQzqf-gWJp9sHU",
+  authDomain: "bookable24-61ec2.firebaseapp.com",
+  projectId: "bookable24-61ec2",
+  storageBucket: "bookable24-61ec2.appspot.com",
+  messagingSenderId: "401609742199",
+  appId: "1:401609742199:web:a0c8faac6c89cad1b93372",
+  measurementId: "G-TDXYN152CB",
+}
