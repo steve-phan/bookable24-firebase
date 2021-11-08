@@ -6,27 +6,37 @@ import { timeSlots } from "./utils"
 
 export const cancelReservation = async (req: Request, res: Response) => {
   //   const data = JSON.parse(req.body)
-  let message: string
-  const { userinfo, selectedDate, selectedSlot, person, shopInfo, bookingId } =
-    req.body
+  let message: string = ""
+  const { shopInfo, bookingId } = req.body
+  console.log("shopInfo", shopInfo)
   try {
-    const bookingDoc = db.doc(`${shopInfo?.shopName}/${bookingId}`)
-
+    const bookingDoc = db.doc(`${shopInfo?.shopId}/${bookingId}`)
+    console.log("doc", `${shopInfo?.shopId}/${bookingId}`)
     const bookingRef = await bookingDoc.get()
     const booking = bookingRef.data()
-
+    console.log("booking", booking)
     if (booking?.status) {
-      return res.status(200).json({ message: "not exist" })
+      res.status(200).json({ message: "not exist" })
+      return
     } else {
       await bookingDoc.update({ status: true })
       message = "success"
     }
 
-    const { email, firstName, lastName, phone, require } = userinfo
-    const { company, street, city, cityCode } = shopInfo
+    const {
+      email,
+      firstName,
+      lastName,
+      phone,
+      require,
+      selectedDate,
+      selectedSlot,
+      person,
+    } = booking || {}
+    const { shopName, address } = shopInfo
 
     await db.collection("mail").add({
-      from: `Cancel Termin at ${company} bookable24.de@gmail.com`,
+      from: `Cancel Termin - ${shopName} bookable24.de@gmail.com`,
       replyTo: shopInfo.email,
       to: [email, "bookable24.de@gmail.com"],
       template: {
@@ -38,10 +48,8 @@ export const cancelReservation = async (req: Request, res: Response) => {
           email,
           require,
           selectedDate: dayjs(selectedDate).format("MMM DD YYYY"),
-          company,
-          street,
-          city,
-          cityCode,
+          shopName,
+          address,
           time: timeSlots[Number(selectedSlot)],
         },
       },

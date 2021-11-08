@@ -3,8 +3,6 @@ export { confirmReservation } from "./confirm"
 export { cancelReservation } from "./cancel"
 export { getReservation } from "./get-reservation"
 
-const baseUrl = process.env.BASE_URL || "https://bookable24.de"
-
 // export const confirmReservation = async (req: Request, res: Response) => {
 //   //   const data = JSON.parse(req.body)
 //   const { userinfo, selectedDate, selectedSlot, person, shopInfo } = req.body
