@@ -18,8 +18,12 @@ import { auth } from "src/firebase"
 
 import { getShopName, validateEmail } from "src/utils"
 import { useAppDispatch, useAppSelector } from "src/store/hooks"
-import { getShopinfo, checkUserAuth } from "src/store/shop/shopSlice"
-import Loading from "src/components/ContentComponents/Loading/Loading"
+import {
+  getShopinfo,
+  checkUserAuth,
+  getAllShopBookings,
+} from "src/store/shop/shopSlice"
+import SectionLoading from "src/components/ContentComponents/Loading/SectionLoading"
 
 import {
   ButtonSt,
@@ -87,6 +91,7 @@ const SignIn = ({ location }: { location: any }) => {
 
   const handleShopLogin = async () => {
     try {
+      setValues(preValues => ({ ...preValues, loading: true }))
       await signInWithEmailAndPassword(auth, values.email, values.password)
 
       await setPersistence(auth, browserLocalPersistence)
@@ -95,20 +100,19 @@ const SignIn = ({ location }: { location: any }) => {
         })
         .catch(err => console.log(err))
       await dispatch(
-        getShopinfo({
-          shopemail: values.email,
-          shopname: getShopName(values.email, shopList),
-          isShopLogin: true,
+        getAllShopBookings({
+          shopName: getShopName(values.email, shopList),
         })
       )
       await navigate("/dashboard")
     } catch (error) {
       alert("Email or Password was not correct :)")
+      setValues(preValues => ({ ...preValues, loading: false }))
     }
   }
   return (
     <WrapColSt>
-      {/* {status === "loading" && <Loading />} */}
+      {values.loading && <SectionLoading />}
       <h1>Bereits Kunde?</h1>
       <TypographySt>
         Loggen Sie sich jetzt ein, um alle Vorteile des Kundenkontos
@@ -164,7 +168,7 @@ const SignIn = ({ location }: { location: any }) => {
         disabled={
           values.email.length === 0 ||
           !validateEmail(values.email) ||
-          values.password.length < 8
+          values.password.length < 5
         }
       >
         Anmelden

@@ -8,7 +8,7 @@ import { IshopInfo } from "src/store/shop/shop.types"
 
 import { WrapColSt } from "../ShopPage.css"
 import { afternoonSlots, morningSlots } from "../utils"
-import { CardSt } from "../StepComponents/StepComponents.css"
+import { CardSt, NotExiSt } from "../StepComponents/StepComponents.css"
 import { CanCelButtonSt } from "../ShopPage.css"
 
 const CancelBooking = ({
@@ -26,9 +26,8 @@ const CancelBooking = ({
   const {
     selectedDate,
     selectedSlot,
-    guestInfo,
-    last_name,
-    first_name,
+    lastName,
+    firstName,
     require,
     person,
     email,
@@ -39,23 +38,20 @@ const CancelBooking = ({
   const handleCancelBooking = () => {
     const bookingId = location.search.replace("?", "").split("=")[1]
     axios
-      .get("/.netlify/functions/cancel-termin", {
-        headers: {
-          shopName,
-          bookingId,
-          shopInfo: JSON.stringify(shopInfo),
-        },
+      .post("/cancel-reservation", {
+        bookingId,
+        shopInfo,
       })
       .then(res => {
         alert("Cancel success. Thanks")
         navigate("/")
       })
       .catch(err => {
-        console.log("err", err)
+        alert("Cancel fail. Try again")
       })
   }
-  if (status) {
-    return <p>This reservation is not exist</p>
+  if (status || !Boolean(email)) {
+    return <NotExiSt>This reservation is not exist</NotExiSt>
   }
 
   return (
@@ -79,7 +75,7 @@ const CancelBooking = ({
         <Typography variant="h6" component="h5">
           Contact Info
         </Typography>
-        <Typography>Name: {last_name + " " + first_name}</Typography>
+        <Typography>Name: {lastName + " " + firstName}</Typography>
         <Typography>Email: {email}</Typography>
         <Typography>Phone: {phone}</Typography>
       </CardSt>
@@ -87,6 +83,7 @@ const CancelBooking = ({
       <CanCelButtonSt
         style={{
           color: "white",
+          marginTop: 16,
         }}
         onClick={handleCancelBooking}
       >

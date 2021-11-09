@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>BookAble24 Booking System App</title>
+    <title>BookAble24 Online Booking System</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,900;1,300&display=swap" rel="stylesheet">
  <style>
@@ -21,8 +21,6 @@
         font-weight: 900;
     }
     .info {
-        border: 1px solid rgb(218, 215, 215);
-
         padding: 16px 0 16px 16px;
         border-radius: 4px;
     }
@@ -31,11 +29,10 @@
         padding-left: 6px;
     }
     .wrap-shop {
-        background-color: #f05123;
-        color: #fff4f4;
-        padding: 6px 20px 8px ;
+        background-color: #e84b63;
+        color: white;
+        padding: 6px 10px 8px ;
         height: 70px;
-        border-radius: 4px;
     }
     .wrap-shop  p {
         margin: 6px 0;
@@ -55,33 +52,17 @@
  </head>
 <body>
  <div class="wrap-mail">
-
-<p class="title"  >Booking confirmed</p>
-<p>Hi {{name}} </p>
-<p>Your appointment at {{company}}</p>
+<h1 class="title" >Hi : {{company}} </h1>
+<p>Thank you for choosing BookAble24 Booking System. Here are some informations about your shop :</p>
 <ul class="info" >
-    <li>Your phone : <span >{{phone}}</span> </li>
-    <li>Your Email : <span >{{email}}</span> </li>
-    <li>Date : <span >{{selectedDate}}</span>  </li>
-    <li>Time :<span >{{time}}</span>   </li>
-    <li>Person :<span >{{person}} Person</span>   </li>
-    <li>Optional:<span class="textbold">{{require}} </span>   </li>
-
-
+    <li>Firma : <span class="textbold">{{company}}</span>  </li>
+    <li>Your Email : <span class="textbold">{{email}}</span> </li>
+    <li>Your phone : <span class="textbold">{{phoneNumber}}</span> </li>
+    <li>Address :<span class="textbold">{{street}} {{cityCode}} {{city}}  </span>   </li>
 </ul>
-
-
-<p class="termin-cancel">
-    Note : If you want to cancel please  <a href={{link_cancel}}>Cancel</a>
-</p>
-<div class="wrap-shop" >
-    <h4  class="shopname">{{company}}</h4>
-    <div class='company' >
-        <p>{{street}}</p> 
-    <p>{{cityCode}} {{city}} </p>
-    </div>
+<p>Please contact 01745284655 to active your Link</p>
+<p>Your Shop Booking System Link {{link_shop}} </p>
 </div>
- </div>
 
 </body>
 </html>

@@ -2,6 +2,7 @@ import { async } from "@firebase/util"
 import { Email } from "@mui/icons-material"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
+import { STATES } from "mongoose"
 // import {} from "firebase"
 
 import { auth } from "src/firebase"
@@ -59,18 +60,17 @@ const intinitialShopState: IshopState = {
   },
 }
 
-// export const getShopinfo = createAsyncThunk(
-//   "shop/getShopInfo",
-//   async (shopName: string) => {
-//     const response: any = await axios.post(
-//       "/.netlify/functions/check-shop-list",
-//       {
-//         shopName,
-//       }
-//     )
-//     return response.data.shopInfo
-//   }
-// )
+export const getAllShopBookings = createAsyncThunk(
+  "shop/getAllShopBookings",
+  async ({ shopName }: { shopName: string }) => {
+    const response: any = await axios.post("/all-shop-bookings", {
+      shopName,
+    })
+    console.log(response.data)
+    const { allTermins, shopInfo } = response.data
+    return { allTermins, shopInfo }
+  }
+)
 
 export const getShopinfo = createAsyncThunk(
   "shop/getShopInfo",
@@ -120,6 +120,9 @@ export const shopSlice = createSlice({
       .addCase(getShopinfo.pending, (state: IshopState) => {
         state.status = "loading"
       })
+      .addCase(getAllShopBookings.pending, state => {
+        state.status = "loading"
+      })
       .addCase(getShopinfo.fulfilled, (state, action) => {
         const {
           city,
@@ -164,7 +167,52 @@ export const shopSlice = createSlice({
           },
         }
       })
+      .addCase(getAllShopBookings.fulfilled, (state, action) => {
+        const {
+          city,
+          cityCode,
+          company,
+          email,
+          firstName,
+          lastName,
+          phoneNumber,
+          shopName,
+          street,
+          uid,
+          settings,
+        } = action.payload.shopInfo
+        const { time, weekdays } = settings || {}
+        const newarr = [
+          ...action.payload.allTermins.filter((termin: any) => !termin.status),
+        ]
+
+        return {
+          ...state,
+          allTermins: [...newarr],
+          isShopLogin: true,
+          status: "login",
+          shopInfo: {
+            city,
+            cityCode,
+            company,
+            email,
+            firstName,
+            lastName,
+            phoneNumber,
+            shopName,
+            street,
+            uid,
+            settings: {
+              time,
+              weekdays,
+            },
+          },
+        }
+      })
       .addCase(getShopinfo.rejected, state => {
+        state.status = "logout"
+      })
+      .addCase(getAllShopBookings.rejected, state => {
         state.status = "logout"
       })
   },

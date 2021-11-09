@@ -14,7 +14,7 @@ import { validateEmail, validatePhone } from "src/utils"
 import { auth } from "src/firebase"
 import { useAppDispatch, useAppSelector } from "src/store/hooks"
 
-import Loading from "../../ContentComponents/Loading/Loading"
+import SectionLoading from "../../ContentComponents/Loading/SectionLoading"
 import {
   ButtonSt,
   FormControlSt,
@@ -89,10 +89,10 @@ const SignIn = () => {
     }
   }, [isShopLogin])
   const handleShopLogin = async () => {
-    // setValues({
-    //   ...values,
-    //   loading: true,
-    // })
+    setValues({
+      ...values,
+      loading: true,
+    })
     try {
       const userRef = await createUserWithEmailAndPassword(
         auth,
@@ -122,24 +122,23 @@ const SignIn = () => {
         uid: userRef.user.uid,
       })
 
-      // if (response.data === "EMAIL_SENT") {
-      //   setValues({
-      //     ...values,
-      //     loading: false,
-      //     open: true,
-      //     modalText: ` Wir haben eine E-Mail an ${values.email} gesendet. Bitte kontaktieren Sie uns, um Ihr Konto zu aktivieren  `,
-      //   })
-      // } else {
-      //   setValues({
-      //     ...values,
-      //     loading: false,
-      //     open: true,
-      //     modalText: `Mit dieser E-Mail ${values.email} stimmt etwas nicht, bitte versuche es später noch einmal`,
-      //   })
-      // }
-      // setTimeout(() => {
-      //   navigate("/")
-      // }, 5000)
+      console.log("response", response)
+      //@ts-ignore
+      if (response.data.type === "success") {
+        setValues({
+          ...values,
+          loading: false,
+          open: true,
+          modalText: ` Wir haben eine E-Mail an ${values.email} gesendet. Bitte kontaktieren Sie uns, um Ihr Konto zu aktivieren  `,
+        })
+      } else {
+        setValues({
+          ...values,
+          loading: false,
+          open: true,
+          modalText: `Mit dieser E-Mail ${values.email} stimmt etwas nicht, bitte versuche es später noch einmal`,
+        })
+      }
     } catch (error) {
       setValues({
         ...values,
@@ -154,10 +153,13 @@ const SignIn = () => {
       <AccountModal
         open={values.open}
         modalText={values.modalText}
-        handleClose={() => setValues({ ...values, open: false })}
+        handleClose={() => {
+          setValues({ ...values, open: false })
+          navigate("/")
+        }}
         handleOpen={() => setValues({ ...values, open: true })}
       />
-      {values.loading && <Loading />}
+      {values.loading && <SectionLoading />}
       <h1>Neuer Kunde?</h1>
       <TypographySt>
         Erstellen Sie sich jetzt ein Kundenkonto für ein persönlicheres und

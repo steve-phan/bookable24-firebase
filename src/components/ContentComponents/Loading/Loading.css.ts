@@ -13,3 +13,17 @@ export const LoadingSt = styled("div")(({ theme }) => ({
     color: "#f05123",
   },
 }))
+
+export const SectionLoadingSt = styled("div")(({ theme }) => ({
+  position: "absolute",
+  zIndex: 2021,
+  inset: 0,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  background: "white",
+
+  "& svg": {
+    color: "#f05123",
+  },
+}))

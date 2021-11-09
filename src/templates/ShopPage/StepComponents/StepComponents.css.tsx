@@ -106,13 +106,15 @@ export const CardSt = styled(Card)(({ theme }) => ({
   marginBottom: 16,
   "& h5": {
     width: "fit-content",
-    fontSize: 20,
-    lineHeight: "21px",
-    borderBottom: `2px solid ${theme.color.warning}`,
+    fontSize: 16,
+    fontWeight: 600,
+    lineHeight: 1.7,
+    color: theme.color.primary,
     marginBottom: 6,
   },
   "& p": {
     fontSize: 16,
+    lineHeight: 1.7,
   },
 }))
 
@@ -124,4 +126,14 @@ export const ThankYouSt = styled("div")(({ theme }) => ({
   paddingTop: 100,
   textAlign: "center",
   lineHeight: "26px",
+}))
+
+export const NotExiSt = styled("p")(({ theme }) => ({
+  position: "absolute",
+  width: "100%",
+  textAlign: "center",
+  top: "50%",
+  transform: "translateY(-50%)",
+  fontSize: 20,
+  color: theme.color.primary,
 }))

@@ -1,6 +1,7 @@
 import React from "react"
 import { Bar } from "react-chartjs-2"
 import { useTranslation } from "gatsby-plugin-react-i18next"
+import dayjs from "dayjs"
 
 import { WrapChartSt, BarSt, NumberSt, TypoTitleSt } from "./Chart.css"
 
@@ -85,10 +86,11 @@ const options = {
 const TotalOders = ({ allTermins }: { allTermins: any[] }) => {
   const { t } = useTranslation()
   let newData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+  console.log(allTermins)
   allTermins.forEach(termin => {
-    const { created_at } = termin
-    const m = created_at.split("-")[1]
-    newData[m - 1] += 1
+    const { createdAt } = termin
+    const m = dayjs(createdAt).month()
+    newData[m] += 1
   })
 
   return (

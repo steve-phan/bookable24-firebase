@@ -23,7 +23,7 @@ export const getRandomColor = () => {
   return color
 }
 
-export const getShopName = (email: string, shopList: any[]) =>
+export const getShopName = (email: string, shopList: any[]): string =>
   shopList?.find(
     (shop: { email: string; shopId: string }) =>
       shop.email.toLowerCase() === email.toLowerCase()
@@ -44,16 +44,18 @@ export const timeAgo = (dateParam: Date, t: ItimeAgoMess) => {
   if (!dateParam) {
     return null
   }
+  dayjs(dateParam).diff()
+  // const date =
+  //   typeof dateParam === "object"
+  //     ? dateParam.getTime()
+  //     : new Date(dateParam).getTime()
 
-  const date =
-    typeof dateParam === "object"
-      ? dateParam.getTime()
-      : new Date(dateParam).getTime()
-
-  const DAY_IN_MS = 86400000
-  const today: number = new Date().getTime()
-  const yesterday = new Date(today - DAY_IN_MS)
-  const seconds = Math.round((today - date) / 1000)
+  // const DAY_IN_MS = 86400000
+  // const today: number = new Date().getTime()
+  // const yesterday = new Date(today - DAY_IN_MS)
+  console.log("dateParam", dateParam)
+  const seconds = dayjs().diff(dateParam, "second")
+  console.log("diff", seconds)
   const minutes = Math.round(seconds / 60)
   // const isToday = today.toDateString() === date.toDateString()
   // const isYesterday = yesterday.toDateString() === date.toDateString()

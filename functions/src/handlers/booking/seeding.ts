@@ -16,6 +16,7 @@ export const seedingBookings = (req: Request, res: Response) => {
       phone,
       require,
       _id,
+      created_at,
     } = booking || {}
     db.collection("gao-vegan0410940")
       .doc(_id.$oid)
@@ -29,6 +30,7 @@ export const seedingBookings = (req: Request, res: Response) => {
         firstName,
         lastName,
         terminAt: dayjs(booking?.selectedDate).unix() / 3600,
+        createdAt: created_at,
       })
       .then(() => {})
       .catch(() => {})

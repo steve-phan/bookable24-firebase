@@ -5,7 +5,9 @@ import dayjs from "dayjs"
 import { db } from "../../config"
 import { TshopInfo } from "./shop.types"
 import { createShopName } from "./utils"
+const baseUrl = process.env.BASE_URL || "https://bookable24.de"
 
+export { getShopAllBookings } from "./get-all-shop-bookings"
 export const shopSignUp = async (req: Request, res: Response) => {
   const {
     company,
@@ -21,8 +23,8 @@ export const shopSignUp = async (req: Request, res: Response) => {
 
   const shopName = createShopName(company, cityCode)
 
-  db.doc(`shoplist/${shopName}`)
-    .set({
+  try {
+    await db.doc(`shoplist/${shopName}`).set({
       company,
       email,
       phoneNumber,
@@ -36,12 +38,28 @@ export const shopSignUp = async (req: Request, res: Response) => {
       isActive: false,
       createAt: dayjs().format("MMM DD YYYY"),
     })
-    .then(data => {
-      res.status(200).json({ type: "success" })
+
+    await db.collection("mail").add({
+      from: "Bookable24 bookable24.de@gmail.com`",
+      replyTo: "bookable24.de@gmail.com",
+      to: [email, "bookable24.de@gmail.com"],
+      template: {
+        name: "shopsignup",
+        data: {
+          phoneNumber,
+          email,
+          company,
+          street,
+          city,
+          cityCode,
+          link_shop: `${baseUrl}/${shopName}`,
+        },
+      },
     })
-    .catch(err => {
-      res.status(403).json({ message: err, type: "faild" })
-    })
+    res.status(200).json({ type: "success" })
+  } catch (error) {
+    res.status(403).json({ message: error, type: "faild" })
+  }
 }
 
 export const getShopInfo = async (req: Request, res: Response) => {

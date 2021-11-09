@@ -8,6 +8,7 @@ import {
 import { alpha, styled } from "@mui/material/styles"
 
 export const WrapColSt = styled("div")`
+  position: relative;
   padding: 16px 8px;
   flex-direction: column;
   position: relative;

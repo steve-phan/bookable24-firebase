@@ -85,13 +85,11 @@ const ShopPage: React.FC<IShopPageProps> = ({
       const bookingId = location.search.replace("?", "").split("=")[1]
       setShowCancelBooking(true)
       axios
-        .post(
-          "/.netlify/functions/cancel-termin",
-          JSON.stringify({ bookingId, shopName, shopInfo })
-        )
+        .post("/get-reservation", { bookingId, shopName })
         .then(res => {
           setIsLoading(false)
-          setBooking(res.data)
+          const { booking: infoBooking } = res.data as { booking: any }
+          setBooking(infoBooking)
         })
         .catch(err => console.log("err", err))
     } else {
@@ -102,16 +100,10 @@ const ShopPage: React.FC<IShopPageProps> = ({
           isShopLogin: false,
         })
       )
-      // setIsLoading(false)
-      // setShowCancelBooking(false)
+      setShowCancelBooking(false)
+      setIsLoading(false)
     }
   }, [])
-
-  // const testTime = dayjs("Dec 31").diff()
-  // const testTime1 = dayjs().diff("Nov 1 2021")
-
-  // const dateFormatted = dayjs("2021/03/02").format("MMM DD YYYY")
-  // console.log("time now is", dateFormatted)
 
   const handleConfirmSubmit = () => {
     const dataBooking = {
@@ -122,11 +114,14 @@ const ShopPage: React.FC<IShopPageProps> = ({
       require: guestInfo.require,
       shopInfo,
     }
-    // setIsLoading(true)
+    setIsLoading(true)
     axios
       .post("/reservation", dataBooking)
       .then(res => {
-        console.log(res.data)
+        setTimeout(() => {
+          setIsLoading(false)
+          handleNext()
+        }, 300)
       })
       .catch(err => {
         setIsLoading(false)
@@ -144,11 +139,10 @@ const ShopPage: React.FC<IShopPageProps> = ({
   return (
     <Layout isShop location={location}>
       <SEO title="Booking Online System" />
-      {/* {!checkShop && <Loading shopname={shopName} />} */}
       <WrapTerminSt>
         <ShopLogo shopinfo={data.contentfulShopInfo} />
         <WrapTerminContentSt>
-          {/* {isLoading && <Loading />} */}
+          {isLoading && <Loading />}
           {showCancelBooking ? (
             booking?.email && (
               <CancelBooking
@@ -173,7 +167,6 @@ const ShopPage: React.FC<IShopPageProps> = ({
                         {...stepProps}
                       >
                         <StepLabelSt
-                          // className={classes.stepLabel}
                           StepIconComponent={ColorlibStepIcon}
                           {...labelProps}
                         >

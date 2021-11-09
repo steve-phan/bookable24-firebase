@@ -17,6 +17,7 @@ export const confirmReservation = async (req: Request, res: Response) => {
       selectedSlot,
       status: false,
       terminAt: dayjs(selectedDate).unix() / 3600,
+      createdAt: new Date().toISOString(),
     })
     const { email, firstName, lastName, phone, require } = userinfo
     const { company, street, city, cityCode, shopName } = shopInfo

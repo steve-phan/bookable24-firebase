@@ -147,9 +147,9 @@ const Hero = () => {
             textAlign: "center",
             textDecoration: "underline",
           }}
-          to="/shop-test1234561"
+          to="/meta-serve100009"
         >
-          <h2>Demo Booking Page XXXX</h2>
+          <h2>Demo Booking Page</h2>
         </Link>
       </Grid>
       <Grid item md={6} xs={12}>
