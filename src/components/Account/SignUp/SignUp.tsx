@@ -150,16 +150,17 @@ const SignIn = () => {
   }
   return (
     <WrapColSt>
+      {/* {values.loading && <SectionLoading />} */}
+      {true && <SectionLoading />}
       <AccountModal
         open={values.open}
         modalText={values.modalText}
         handleClose={() => {
           setValues({ ...values, open: false })
-          navigate("/")
+          // navigate("/")
         }}
         handleOpen={() => setValues({ ...values, open: true })}
       />
-      {values.loading && <SectionLoading />}
       <h1>Neuer Kunde?</h1>
       <TypographySt>
         Erstellen Sie sich jetzt ein Kundenkonto für ein persönlicheres und

@@ -42,7 +42,7 @@ const HomeDashBoard = () => {
     week: t("dashboard.dashboard.timeago.week"),
     month: t("dashboard.dashboard.timeago.month"),
   }
-
+  console.log("newestTermins", newestTermins)
   return (
     <div>
       <Grid container>
@@ -55,7 +55,7 @@ const HomeDashBoard = () => {
       </Grid>
       <MenuList>
         {newestTermins?.reverse().map(termin => (
-          <MenuItemSt key={termin.terminAt}>
+          <MenuItemSt key={(termin.terminAt as string) + Math.random()}>
             <SnackbarContent
               message={
                 termin.firstName +

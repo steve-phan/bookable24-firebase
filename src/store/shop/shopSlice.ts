@@ -19,13 +19,14 @@ export const checkUserAuth =
       if (user?.email) {
         console.log("email", user?.email)
         const shopName = getShopName(user.email, shopList)
-        dispatch(
-          getShopinfo({
-            shopEmail: user?.email || "",
-            shopName,
-            isShopLogin: true,
-          })
-        )
+        dispatch(getAllShopBookings({ shopName }))
+        // dispatch(
+        //   getShopinfo({
+        //     shopEmail: user?.email || "",
+        //     shopName,
+        //     // isShopLogin: true,
+        //   })
+        // )
       } else {
         // No user is signed in.
         dispatch(setShopLogout())
@@ -74,7 +75,7 @@ export const getAllShopBookings = createAsyncThunk(
 
 export const getShopinfo = createAsyncThunk(
   "shop/getShopInfo",
-  async ({ shopEmail, shopName, isShopLogin }: IshopQuery) => {
+  async ({ shopEmail, shopName }: IshopQuery) => {
     console.log("getShopInfo", "trigger")
     const response: any = await axios.get("/shopinfo", {
       headers: {
@@ -87,7 +88,7 @@ export const getShopinfo = createAsyncThunk(
       bookings,
       shopinfo: shopInfo,
     }: { bookings: any[]; shopinfo: IshopInfo } = response.data
-    return { bookings, shopInfo, isShopLogin }
+    return { bookings, shopInfo }
   }
 )
 
@@ -141,14 +142,12 @@ export const shopSlice = createSlice({
         const newarr = [
           ...action.payload.bookings.filter(termin => !termin.status),
         ]
-        const isShopLogin = action.payload.isShopLogin ? true : false
-        const status = action.payload.isShopLogin ? "login" : "logout"
+        // const isShopLogin = action.payload.isShopLogin ? true : false
+        // const status = action.payload.isShopLogin ? "login" : "logout"
 
         return {
           ...state,
           allCommingTermins: [...newarr],
-          isShopLogin,
-          status,
           shopInfo: {
             city,
             cityCode,

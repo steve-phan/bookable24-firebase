@@ -16,7 +16,7 @@ export const LoadingSt = styled("div")(({ theme }) => ({
 
 export const SectionLoadingSt = styled("div")(({ theme }) => ({
   position: "absolute",
-  zIndex: 2021,
+  zIndex: 1000,
   inset: 0,
   display: "flex",
   justifyContent: "center",

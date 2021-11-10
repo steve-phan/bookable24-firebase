@@ -26,20 +26,22 @@ import {
 } from "./ShareInfo.css"
 
 const createData = ({
+  createdAt,
   selectedSlot,
   person,
-  first_name,
-  last_name,
+  firstName,
+  lastName,
   phone,
   email,
   require,
   _id,
 }: ITermin) => {
   return {
+    createdAt,
     selectedSlot,
     person,
-    firstNam: first_name,
-    lastName: last_name,
+    firstName,
+    lastName,
     phone,
     email,
     require,
@@ -84,7 +86,7 @@ function Row(props: { row: ReturnType<typeof createData>; index: number }) {
           {allSlots[Number(row.selectedSlot)]}
         </TableCell>
         <TableCell align="left">{row.person}</TableCell>
-        <TableCell align="left">{row.firstNam + " " + row.lastName}</TableCell>
+        <TableCell align="left">{row.firstName + " " + row.lastName}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ padding: 0 }} colSpan={6}>
@@ -133,17 +135,19 @@ const ShowInfo = ({ todayTermins }: { todayTermins: ITermin[] }) => {
       _id,
       selectedSlot,
       person,
-      first_name,
-      last_name,
+      firstName,
+      lastName,
       phone,
       email,
       require,
+      createdAt,
     }: ITermin) => {
       return createData({
+        createdAt,
         selectedSlot,
         person,
-        first_name,
-        last_name,
+        firstName,
+        lastName,
         phone,
         email,
         require,
@@ -188,7 +192,7 @@ const ShowInfo = ({ todayTermins }: { todayTermins: ITermin[] }) => {
         </TableHead>
         <TableBody>
           {rows.map((row, index) => (
-            <Row key={row._id} row={row} index={index} />
+            <Row key={row.createdAt} row={row} index={index} />
           ))}
         </TableBody>
       </Table>
