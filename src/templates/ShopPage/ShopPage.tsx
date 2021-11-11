@@ -107,7 +107,7 @@ const ShopPage: React.FC<IShopPageProps> = ({
     if (status !== "loading") {
       setIsLoading(false)
     }
-  }, [shopInfo.isActive])
+  }, [shopInfo.isActive, shopInfo.email])
 
   const handleConfirmSubmit = () => {
     const dataBooking = {
@@ -139,81 +139,6 @@ const ShopPage: React.FC<IShopPageProps> = ({
       activeStep !== 0
     )
   }
-  const PageContent = () => (
-    <>
-      {showCancelBooking ? (
-        booking?.email && (
-          <CancelBooking
-            booking={booking}
-            shopName={shopName}
-            location={location}
-            shopInfo={data.contentfulShopInfo}
-          />
-        )
-      ) : (
-        <>
-          {activeStep !== 4 && (
-            <StepperSt activeStep={activeStep}>
-              {steps.map((label, index) => {
-                const stepProps = {}
-                const labelProps = {}
-
-                return (
-                  <Step
-                    style={{ padding: 0, width: "33.3333%" }}
-                    key={label}
-                    {...stepProps}
-                  >
-                    <StepLabelSt
-                      StepIconComponent={ColorlibStepIcon}
-                      {...labelProps}
-                    >
-                      {label}
-                    </StepLabelSt>
-                  </Step>
-                )
-              })}
-            </StepperSt>
-          )}
-          <>
-            {getStepContent(activeStep)}
-            {activeStep !== 4 && (
-              <WrapRowSt>
-                <ButtonSt
-                  disabled={activeStep === 0}
-                  variant="contained"
-                  color="primary"
-                  onClick={handleBack}
-                >
-                  Back
-                </ButtonSt>
-                <ButtonSt
-                  disabled={
-                    (activeStep === 2 && !isValidInfo) || isNextButtonDisable()
-                  }
-                  variant="contained"
-                  color="primary"
-                  onClick={() => {
-                    if (activeStep < 3) {
-                      handleNext()
-                    } else {
-                      handleConfirmSubmit()
-                    }
-                  }}
-                >
-                  {activeStep < 2
-                    ? "Next"
-                    : activeStep === 2
-                    ? "Preview"
-                    : "Book"}
-                </ButtonSt>
-              </WrapRowSt>
-            )}
-          </>
-        </>
-      )}
-    </>
-  )
 
   return (
     <Layout isShop location={location}>
@@ -232,7 +157,80 @@ const ShopPage: React.FC<IShopPageProps> = ({
               <Typography>Please contact: bookable24.de@gmail.com</Typography>
             </ShowNotice>
           ) : (
-            <PageContent />
+            <>
+              {showCancelBooking ? (
+                booking?.email && (
+                  <CancelBooking
+                    booking={booking}
+                    shopName={shopName}
+                    location={location}
+                    shopInfo={data.contentfulShopInfo}
+                  />
+                )
+              ) : (
+                <>
+                  {activeStep !== 4 && (
+                    <StepperSt activeStep={activeStep}>
+                      {steps.map((label, index) => {
+                        const stepProps = {}
+                        const labelProps = {}
+
+                        return (
+                          <Step
+                            style={{ padding: 0, width: "33.3333%" }}
+                            key={label}
+                            {...stepProps}
+                          >
+                            <StepLabelSt
+                              StepIconComponent={ColorlibStepIcon}
+                              {...labelProps}
+                            >
+                              {label}
+                            </StepLabelSt>
+                          </Step>
+                        )
+                      })}
+                    </StepperSt>
+                  )}
+                  <>
+                    {getStepContent(activeStep)}
+                    {activeStep !== 4 && (
+                      <WrapRowSt>
+                        <ButtonSt
+                          disabled={activeStep === 0}
+                          variant="contained"
+                          color="primary"
+                          onClick={handleBack}
+                        >
+                          Back
+                        </ButtonSt>
+                        <ButtonSt
+                          disabled={
+                            (activeStep === 2 && !isValidInfo) ||
+                            isNextButtonDisable()
+                          }
+                          variant="contained"
+                          color="primary"
+                          onClick={() => {
+                            if (activeStep < 3) {
+                              handleNext()
+                            } else {
+                              handleConfirmSubmit()
+                            }
+                          }}
+                        >
+                          {activeStep < 2
+                            ? "Next"
+                            : activeStep === 2
+                            ? "Preview"
+                            : "Book"}
+                        </ButtonSt>
+                      </WrapRowSt>
+                    )}
+                  </>
+                </>
+              )}
+            </>
           )}
         </WrapTerminContentSt>
       </WrapTerminSt>
