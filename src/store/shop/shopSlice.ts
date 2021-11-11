@@ -45,6 +45,7 @@ const intinitialShopState: IshopState = {
     phoneNumber: "",
     shopName: "",
     street: "",
+    isActive: false,
     uid: "",
     settings: {
       time: "12:30",
@@ -76,18 +77,19 @@ export const getAllShopBookings = createAsyncThunk(
 export const getShopinfo = createAsyncThunk(
   "shop/getShopInfo",
   async ({ shopEmail, shopName }: IshopQuery) => {
-    console.log("getShopInfo", "trigger")
     const response: any = await axios.get("/shopinfo", {
       headers: {
         shopEmail,
         shopName,
       },
     })
-
+    console.log("shopName", shopName)
     const {
       bookings,
       shopinfo: shopInfo,
     }: { bookings: any[]; shopinfo: IshopInfo } = response.data
+    console.log("getShopInfo", response.data)
+
     return { bookings, shopInfo }
   }
 )
@@ -137,6 +139,7 @@ export const shopSlice = createSlice({
           street,
           uid,
           settings,
+          isActive,
         } = action.payload.shopInfo
         const { time, weekdays } = settings || {}
         const newarr = [
@@ -147,6 +150,7 @@ export const shopSlice = createSlice({
 
         return {
           ...state,
+          status: "logout",
           allCommingTermins: [...newarr],
           shopInfo: {
             city,
@@ -158,6 +162,7 @@ export const shopSlice = createSlice({
             phoneNumber,
             shopName,
             street,
+            isActive,
             uid,
             settings: {
               time,
@@ -178,6 +183,7 @@ export const shopSlice = createSlice({
           shopName,
           street,
           uid,
+          isActive,
           settings,
         } = action.payload.shopInfo
         const { time, weekdays } = settings || {}
@@ -200,6 +206,7 @@ export const shopSlice = createSlice({
             phoneNumber,
             shopName,
             street,
+            isActive,
             uid,
             settings: {
               time,

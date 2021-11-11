@@ -17,7 +17,6 @@ import { morningSlots, afternoonSlots } from "src/templates/ShopPage/utils"
 import TotalCustomer from "./Chart/TotalCustomer"
 import TotalOders from "./Chart/TotalOder"
 import {
-  GridItem,
   MenuItemSt,
   TimeAgoSpanSt,
   MessageSpanSt,
@@ -42,7 +41,7 @@ const HomeDashBoard = () => {
     week: t("dashboard.dashboard.timeago.week"),
     month: t("dashboard.dashboard.timeago.month"),
   }
-  console.log("newestTermins", newestTermins)
+
   return (
     <div>
       <Grid container>
@@ -84,7 +83,6 @@ export const SnackbarContent = (props: any) => {
     color,
     close,
     icon,
-    rtlActive,
     timeAgo,
     termin: {
       email,

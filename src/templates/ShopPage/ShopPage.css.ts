@@ -70,3 +70,9 @@ export const CanCelButtonSt = styled(ButtonSt)(({ theme }) => ({
     marginTop: 36,
   },
 }))
+
+export const ShowNotice = styled("div")({
+  padding: 16,
+  paddingTop: 40,
+  textAlign: "center",
+})

@@ -26,7 +26,7 @@ const TotalCustomer = ({ allTermins }: { allTermins: any[] }) => {
     (acc, cur) => acc + Number(cur.person),
     0
   )
-  console.log("totalCustomers", totalCustomers)
+
   return (
     <WrapChartSt>
       <TypoTitleSt variant="h5">

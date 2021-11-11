@@ -67,16 +67,20 @@ export const getShopInfo = async (req: Request, res: Response) => {
   const { shopemail: shopEmail, shopname: shopName } = req.headers
 
   // await db.collection(shopName as string).get()
-  let sN = shopName === "shop-test1234561" ? "meta-serve100009" : shopName
+  // let sN = shopName === "shop-test1234561" ? "meta-serve100009" : shopName
 
   try {
-    const shopInfoRef = await db.doc(`shoplist/${sN}`).get()
-    const shopinfo = shopInfoRef.data()
-
+    const shopInfoRef = await db
+      .collection("shoplist")
+      .where("email", "==", shopEmail)
+      .get()
+    let shopinfo: any
+    shopInfoRef.forEach(data => (shopinfo = data.data()))
+    console.log("shopinfo", shopinfo)
     const currentHours: number = dayjs().unix() / 3600 + dayjs().hour() - 1
 
     const bookingRef = await db
-      .collection(`${sN}`)
+      .collection(`${shopInfoRef}`)
       .where("terminAt", ">=", currentHours)
       .get()
     const bookings: any[] = []

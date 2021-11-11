@@ -9,6 +9,7 @@ export interface IshopInfo {
   shopName: string
   street: string
   uid?: string
+  isActive: boolean
   settings: {
     time: string
     weekdays: number[]
