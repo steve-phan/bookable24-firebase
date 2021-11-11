@@ -14,10 +14,9 @@ export const cancelReservation = async (req: Request, res: Response) => {
     console.log("doc", `${shopInfo?.shopId}/${bookingId}`)
     const bookingRef = await bookingDoc.get()
     const booking = bookingRef.data()
-    console.log("booking", booking)
+
     if (booking?.status) {
-      res.status(200).json({ message: "not exist" })
-      return
+      message = "not exist"
     } else {
       await bookingDoc.update({ status: true })
       message = "success"

@@ -10,12 +10,13 @@ export const getReservation = async (req: Request, res: Response) => {
 
     const bookingRef = await bookingDoc.get()
     const booking = bookingRef.data()
-
+    let message: string
     if (booking?.status) {
-      res.status(200).json({ message: "not exist", booking })
+      message = "not exist"
     } else {
-      res.status(200).json({ message: "success", booking })
+      message = "success"
     }
+    res.status(200).json({ message, booking })
   } catch (error) {
     res.status(400).json({ message: "fail" })
   }

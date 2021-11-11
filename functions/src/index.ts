@@ -12,7 +12,7 @@ import { shopSignUp, getShopInfo, getShopAllBookings } from "./handlers/shop"
 
 const app: Express = express()
 
-app.use(cors({ origin: true }))
+app.use(cors())
 
 app.get("/seedingbookings", seedingBookings)
 app.get("/shopinfo", getShopInfo)
@@ -22,4 +22,10 @@ app.post("/get-reservation", getReservation)
 app.post("/cancel-reservation", cancelReservation)
 app.post("/signup", shopSignUp)
 
-export const api = functions.region("euro-west3").https.onRequest(app)
+export const api = functions.region("europe-west3").https.onRequest(app)
+
+export const helloworld = functions
+  .region("europe-west3")
+  .https.onRequest((req, res) => {
+    res.status(200).json({ message: "Hello world" })
+  })
