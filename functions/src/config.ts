@@ -1,11 +1,10 @@
-import admin from "firebase-admin"
+import { initializeApp } from "firebase/app"
+import { getFirestore } from "firebase/firestore"
 
-import * as serviceAccountKey from "./key.json"
-
-const app = admin.initializeApp({
-  credential: admin.credential.cert(serviceAccountKey as admin.ServiceAccount),
+initializeApp({
+  apiKey: "AIzaSyB3ycs7ejcmtHonG_NdzEQzqf-gWJp9sHU",
+  authDomain: "bookable24-61ec2.firebaseapp.com",
+  projectId: "bookable24-61ec2",
 })
 
-const db = admin.firestore(app)
-
-export { db, admin }
+export const db = getFirestore()

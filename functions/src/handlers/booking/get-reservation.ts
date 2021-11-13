@@ -1,15 +1,19 @@
 import { Request, Response } from "firebase-functions"
 import { db } from "../../config"
 
+import { doc, getDoc } from "firebase/firestore"
+
 export const getReservation = async (req: Request, res: Response) => {
   //   const data = JSON.parse(req.body)
   //   let message: string
+  console.log("hello world")
   const { shopName, bookingId } = req.body
   try {
-    const bookingDoc = db.doc(`${shopName}/${bookingId}`)
+    const bookingRef = doc(db, `${shopName}`, `${bookingId}`)
+    // db.doc(`${shopName}/${bookingId}`)
 
-    const bookingRef = await bookingDoc.get()
-    const booking = bookingRef.data()
+    const bookingSnap = await getDoc(bookingRef)
+    const booking = bookingSnap.data()
     let message: string
     if (booking?.status) {
       message = "not exist"

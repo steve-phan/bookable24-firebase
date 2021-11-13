@@ -1,6 +1,7 @@
 import { Request, Response } from "firebase-functions"
 import dayjs from "dayjs"
 import { db } from "../../config"
+import { doc, getDoc, updateDoc, collection, setDoc } from "firebase/firestore"
 
 import { timeSlots } from "./utils"
 
@@ -10,15 +11,17 @@ export const cancelReservation = async (req: Request, res: Response) => {
   const { shopInfo, bookingId } = req.body
   console.log("shopInfo", shopInfo)
   try {
-    const bookingDoc = db.doc(`${shopInfo?.shopId}/${bookingId}`)
-    console.log("doc", `${shopInfo?.shopId}/${bookingId}`)
-    const bookingRef = await bookingDoc.get()
+    const bookingDoc = doc(db, `${shopInfo?.shopId}`, `${bookingId}`)
+    //  db.doc(`${shopInfo?.shopId}/${bookingId}`)
+
+    const bookingRef = await getDoc(bookingDoc)
     const booking = bookingRef.data()
 
     if (booking?.status) {
       message = "not exist"
     } else {
-      await bookingDoc.update({ status: true })
+      await updateDoc(bookingDoc, { status: true })
+      //  bookingDoc.update({ status: true })
       message = "success"
     }
 
@@ -34,7 +37,8 @@ export const cancelReservation = async (req: Request, res: Response) => {
     } = booking || {}
     const { shopName, address } = shopInfo
 
-    await db.collection("mail").add({
+    const mailRef = collection(db, "mail")
+    await setDoc(doc(mailRef), {
       from: `Cancel Termin - ${shopName} bookable24.de@gmail.com`,
       replyTo: shopInfo.email,
       to: [email, "bookable24.de@gmail.com"],
@@ -53,6 +57,7 @@ export const cancelReservation = async (req: Request, res: Response) => {
         },
       },
     })
+    // await db.collection("mail").add()
 
     res.status(200).json({ message })
   } catch (error) {

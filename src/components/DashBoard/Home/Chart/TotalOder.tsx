@@ -86,7 +86,6 @@ const options = {
 const TotalOders = ({ allTermins }: { allTermins: any[] }) => {
   const { t } = useTranslation()
   let newData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-  console.log(allTermins)
   allTermins.forEach(termin => {
     const { createdAt } = termin
     const m = dayjs(createdAt).month()

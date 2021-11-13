@@ -68,8 +68,8 @@ export const getAllShopBookings = createAsyncThunk(
     const response: any = await axios.post("/all-shop-bookings", {
       shopName,
     })
-    console.log(response.data)
     const { allTermins, shopInfo } = response.data
+    console.log("get- all- shop", shopInfo)
     return { allTermins, shopInfo }
   }
 )
@@ -88,7 +88,6 @@ export const getShopinfo = createAsyncThunk(
       bookings,
       shopinfo: shopInfo,
     }: { bookings: any[]; shopinfo: IshopInfo } = response.data
-    console.log("getShopInfo", response.data)
 
     return { bookings, shopInfo }
   }

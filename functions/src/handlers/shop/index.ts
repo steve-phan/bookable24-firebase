@@ -6,6 +6,15 @@ import { db } from "../../config"
 import { TshopInfo } from "./shop.types"
 import { createShopName } from "./utils"
 const baseUrl = process.env.BASE_URL || "https://bookable24.de"
+import {
+  collection,
+  doc,
+  setDoc,
+  where,
+  getDocs,
+  query,
+  getDoc,
+} from "firebase/firestore"
 
 export { getShopAllBookings } from "./get-all-shop-bookings"
 export const shopSignUp = async (req: Request, res: Response) => {
@@ -24,7 +33,8 @@ export const shopSignUp = async (req: Request, res: Response) => {
   const shopName = createShopName(company, cityCode)
 
   try {
-    await db.doc(`shoplist/${shopName}`).set({
+    const shopNameRef = doc(db, "shoplist", `${shopName}`)
+    await setDoc(shopNameRef, {
       company,
       email,
       phoneNumber,
@@ -38,8 +48,9 @@ export const shopSignUp = async (req: Request, res: Response) => {
       isActive: false,
       createAt: dayjs().format("MMM DD YYYY"),
     })
+    const mailRef = collection(db, "mail")
 
-    await db.collection("mail").add({
+    await setDoc(doc(mailRef), {
       from: "Bookable24 bookable24.de@gmail.com`",
       replyTo: "bookable24.de@gmail.com",
       to: [email, "bookable24.de@gmail.com"],
@@ -56,6 +67,9 @@ export const shopSignUp = async (req: Request, res: Response) => {
         },
       },
     })
+    // await db.collection("mail").add()
+
+    // db.doc(`shoplist/${shopName}`).set()
     res.status(200).json({ type: "success" })
   } catch (error) {
     res.status(403).json({ message: error, type: "faild" })
@@ -68,23 +82,27 @@ export const getShopInfo = async (req: Request, res: Response) => {
 
   // await db.collection(shopName as string).get()
   // let sN = shopName === "shop-test1234561" ? "meta-serve100009" : shopName
-
+  console.log("get SHOP INFO")
+  const currentHours: number = dayjs().unix() / 3600 + dayjs().hour() - 1
   try {
-    const shopInfoRef = await db
-      .collection("shoplist")
-      .where("email", "==", shopEmail)
-      .get()
-    let shopinfo: any
-    shopInfoRef.forEach(data => (shopinfo = data.data()))
-    console.log("shopinfo", shopinfo)
-    const currentHours: number = dayjs().unix() / 3600 + dayjs().hour() - 1
+    const shopInfoRef = doc(db, "shoplist", `${shopName}`)
+    // const shopInfoRef = query(
+    //   collection(db, "shoplist"),
+    //   where("email", "==", shopEmail)
+    // )
+    const shopinfo = (await getDoc(shopInfoRef)).data()
+    // const bookingRefs =
 
-    const bookingRef = await db
-      .collection(`${shopInfoRef}`)
-      .where("terminAt", ">=", currentHours)
-      .get()
+    const shopNameCollection = collection(db, `${shopName}`)
+    const bookingQuery = query(
+      shopNameCollection,
+      where("terminAt", ">=", currentHours)
+    )
+
+    const bookingRefs = await getDocs(bookingQuery)
+
     const bookings: any[] = []
-    bookingRef.forEach(booking => {
+    bookingRefs.forEach(booking => {
       const { selectedDate, selectedSlot, status } = booking.data() || {}
       bookings.push({ selectedDate, selectedSlot, status })
     })

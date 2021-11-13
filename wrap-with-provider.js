@@ -4,8 +4,11 @@ import { store } from "./src/store/store"
 import CheckAuth from "./CheckAuth"
 
 import axios from "axios"
+// axios.defaults.baseURL =
+//   "https://europe-west3-bookable24-61ec2.cloudfunctions.net/api"
+
 axios.defaults.baseURL =
-  "https://europe-west3-bookable24-61ec2.cloudfunctions.net/api"
+  "http://localhost:5001/bookable24-61ec2/europe-west3/api"
 
 // eslint-disable-next-line react/display-name,react/prop-types
 export default function ({ element }) {

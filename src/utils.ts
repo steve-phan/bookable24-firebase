@@ -53,9 +53,7 @@ export const timeAgo = (dateParam: Date, t: ItimeAgoMess) => {
   // const DAY_IN_MS = 86400000
   // const today: number = new Date().getTime()
   // const yesterday = new Date(today - DAY_IN_MS)
-  console.log("dateParam", dateParam)
   const seconds = dayjs().diff(dateParam, "second")
-  console.log("diff", seconds)
   const minutes = Math.round(seconds / 60)
   // const isToday = today.toDateString() === date.toDateString()
   // const isYesterday = yesterday.toDateString() === date.toDateString()
